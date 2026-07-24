@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversion Auditor AI</title>
+    <!-- Premium Font (Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Ultra-Modern Enterprise B2B Dark Theme */
+        body {
+            background-color: #09090b;
+            color: #ededed;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #18181b;
+            border: 1px solid #27272a;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+        }
+        h1 { 
+            font-size: 28px; 
+            font-weight: 700; 
+            margin-bottom: 10px; 
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        p.subtitle { 
+            font-size: 14px; 
+            color: #a1a1aa; 
+            margin-bottom: 30px; 
+            line-height: 1.5;
+        }
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        input {
+            width: 100%;
+            padding: 16px;
+            border: 1px solid #3f3f46;
+            border-radius: 10px;
+            background-color: #09090b;
+            color: #fff;
+            font-size: 15px;
+            box-sizing: border-box;
+            outline: none;
+            transition: 0.3s ease;
+        }
+        input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+        button {
+            background-color: #fafafa;
+            color: #09090b;
+            font-weight: 600;
+            border: none;
+            padding: 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: 0.3s ease;
+        }
+        button:hover { 
+            background-color: #e4e4e7; 
+            transform: translateY(-1px);
+        }
+        /* Professional Loading Spinner */
+        .loader {
+            border: 3px solid #27272a;
+            border-top: 3px solid #3b82f6;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+            display: none;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* Structured Output Card */
+        #result-card {
+            display: none;
+            margin-top: 25px;
+            text-align: left;
+            background-color: #09090b;
+            border: 1px solid #27272a;
+            padding: 20px;
+            border-radius: 12px;
+        }
+        .badge-danger {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .metric-text {
+            font-size: 14px;
+            color: #d4d4d8;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Conversion Auditor AI</h1>
+        <p class="subtitle">Enter your landing page URL. Our AI will analyze your copy, layout, and psychology to uncover hidden conversion killers.</p>
+        
+        <div class="input-group">
+            <input type="text" id="urlInput" placeholder="https://yourstartup.com">
+            <button onclick="startAudit()">Run Deep Audit</button>
+        </div>
+        
+        <div class="loader" id="spinner"></div>
+
+        <div id="result-card">
+            <!-- Professional Dummy Result Structure -->
+        </div>
+    </div>
+
+    <script>
+        function startAudit() {
+            const url = document.getElementById('urlInput').value;
+            const spinner = document.getElementById('spinner');
+            const resultCard = document.getElementById('result-card');
+            
+            if(!url) {
+                alert("Please enter a valid website URL to begin the audit.");
+                return;
+            }
+
+            // Hide old result and show loading spinner
+            resultCard.style.display = 'none';
+            spinner.style.display = 'block';
+
+            // Simulate AI processing time for realistic feel
+            setTimeout(() => {
+                spinner.style.display = 'none';
+                resultCard.style.display = 'block';
+                
+                resultCard.innerHTML = `
+                    <div class="badge-danger">Conversion Score: 42/100</div>
+                    <div class="metric-text">
+                        <strong>Target:</strong> ${url}<br><br>
+                        <strong>Critical Issue:</strong> Your headline lacks a clear value proposition. Visitors cannot tell what problem you are solving within the first 3 seconds.<br><br>
+                        <strong>AI Recommendation:</strong> Shift from feature-based copy to outcome-based copy. Add a single, high-contrast Call-To-Action above the fold.<br><br>
+                        <i>(Note: This is the UI simulation. API integration pending.)</i>
+                    </div>
+                `;
+            }, 2500);
+        }
+    </script>
+
+</body>
+</html>
