@@ -3,10 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- FORCE BROWSER TO LOAD FRESH CODE -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
     
     <title>Conversion Auditor AI Pro</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -141,11 +138,12 @@
 
     <div class="container">
         <h1>Conversion Auditor AI</h1>
-        <p class="subtitle">Enter any landing page URL for a deeply specific, unique conversion roast powered by Google Gemini.</p>
+        <p class="subtitle">Enter any landing page URL for a deeply specific conversion roast.</p>
         
         <div class="input-group">
             <input type="text" id="urlInput" placeholder="Paste website link here (e.g., https://tesla.com)">
-            <button onclick="startAudit()">Run Master Audit 💎</button>
+            <!-- BROWSER CACHE CHECKER BUTTON -->
+            <button onclick="startAudit()">Run Audit (Version 10) 🚀</button>
         </div>
         
         <div class="loader" id="spinner"></div>
@@ -167,21 +165,37 @@
             resultCard.style.display = 'none';
             spinner.style.display = 'block';
 
-            // YOUR REAL GOOGLE API KEY (Split for GitHub protection)
-            const p1 = "AQ.Ab8RN6JZZke";
-            const p2 = "C5Ax2geK5-096qS7FO";
-            const p3 = "kWwt2k7b7vfFqi_o5fmJw";
-            const GEMINI_API_KEY = p1 + p2 + p3; 
+            // AAPKI EXACT API KEY
+            const GEMINI_API_KEY = "AQ.Ab8RN6JZZkeC5Ax2geK5-096qS7FOkWwt2k7b7vfFqi_o5fmJw"; 
 
             let aiText = "";
+            let finalModelUsed = "";
             const score = Math.floor(Math.random() * (45 - 15 + 1)) + 15;
 
             try {
-                // Highly specific prompt forcing unique outputs
-                const promptText = `You are a strict, elite CRO expert. Analyze this specific URL: ${url}. Provide exactly 3 brutal, hyper-specific bullet points highlighting conversion killers, UX flaws, or bad copy based on what this specific brand/industry does. Do NOT use generic advice. Be ruthless. Limit to 100 words total.`;
+                // JAISE ERROR NE BOLA: Pehle Google se ListModels call karo
+                const listResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${GEMINI_API_KEY}`);
+                const listData = await listResponse.json();
 
-                // Official Google Gemini Endpoint (gemini-1.5-flash)
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
+                if(listData.error) {
+                    throw new Error(`Google Auth Failed: Is API Key allowed to be used? Check error: ${listData.error.message}`);
+                }
+
+                // AI Models filter karo jo text likh sakte hain
+                const validModels = listData.models.filter(m => m.supportedGenerationMethods && m.supportedGenerationMethods.includes("generateContent"));
+
+                if (validModels.length === 0) {
+                    throw new Error("Aapki key connect ho gayi, par Google ne abhi tak is key par koi text AI model assign nahi kiya hai.");
+                }
+
+                // Pehla working model uthao
+                const selectedModel = validModels.find(m => m.name.includes("flash")) || validModels[0];
+                finalModelUsed = selectedModel.name;
+
+                // Asli Audit Request (Naye Model Name Ke Sath)
+                const promptText = `You are an elite CRO expert. Analyze this specific URL: ${url}. Provide exactly 3 brutal, hyper-specific bullet points highlighting conversion killers, UX flaws, or bad copy based ONLY on what this brand/industry does. Do NOT use generic advice. Be ruthless. Limit to 100 words total.`;
+
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/${finalModelUsed}:generateContent?key=${GEMINI_API_KEY}`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -218,7 +232,7 @@
                     <strong>Master Audit Result:</strong><br><br>
                     ${formattedText}
                     <hr>
-                    <i style="color: #64748b;">Powered by Official Google Gemini AI.</i>
+                    <i style="color: #64748b; font-size: 13px;">Tested with: ${finalModelUsed.replace('models/', '') || 'Failed'}</i>
                 </div>
             `;
         }
