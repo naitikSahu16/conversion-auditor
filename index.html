@@ -8,39 +8,40 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            background-color: #09090b;
-            color: #ededed;
+            background-color: #f8fafc; /* Soft modern light background */
+            color: #0f172a; /* Dark slate text for high readability */
             font-family: 'Inter', sans-serif;
             margin: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            padding: 40px 15px; /* Gives space on top/bottom */
             min-height: 100vh;
+            box-sizing: border-box;
         }
         .container {
-            background-color: #18181b;
-            border: 1px solid #27272a;
-            padding: 40px;
+            background-color: #ffffff; /* Pure white card */
+            border: 1px solid #e2e8f0;
+            padding: 40px 30px;
             border-radius: 16px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 30px -5px rgba(0,0,0,0.05); /* Premium soft shadow */
             text-align: center;
-            max-width: 450px;
-            width: 90%;
+            max-width: 800px; /* Much wider for full screen feel */
+            width: 100%;
+            box-sizing: border-box;
         }
         h1 { 
-            font-size: 28px; 
+            font-size: 32px; 
             font-weight: 700; 
-            margin-bottom: 10px; 
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            margin-bottom: 12px; 
+            color: #0f172a;
+            letter-spacing: -0.5px;
         }
         p.subtitle { 
-            font-size: 14px; 
-            color: #a1a1aa; 
-            margin-bottom: 30px; 
-            line-height: 1.5;
+            font-size: 16px; 
+            color: #64748b; 
+            margin-bottom: 40px; 
+            line-height: 1.6;
         }
         .input-group {
             display: flex;
@@ -49,44 +50,47 @@
         }
         input {
             width: 100%;
-            padding: 16px;
-            border: 1px solid #3f3f46;
+            padding: 18px 20px;
+            border: 1px solid #cbd5e1;
             border-radius: 10px;
-            background-color: #09090b;
-            color: #fff;
-            font-size: 15px;
+            background-color: #ffffff;
+            color: #0f172a;
+            font-size: 16px;
             box-sizing: border-box;
             outline: none;
             transition: 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02) inset;
         }
         input:focus {
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+            border-color: #2563eb;
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
         }
         button {
-            background-color: #fafafa;
-            color: #09090b;
+            background-color: #2563eb; /* Trust Corporate Blue */
+            color: #ffffff;
             font-weight: 600;
             border: none;
-            padding: 16px;
+            padding: 18px;
             border-radius: 10px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 17px;
             width: 100%;
             transition: 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
         }
         button:hover { 
-            background-color: #e4e4e7; 
+            background-color: #1d4ed8; 
             transform: translateY(-1px);
+            box-shadow: 0 6px 8px -1px rgba(37, 99, 235, 0.3);
         }
         .loader {
-            border: 3px solid #27272a;
-            border-top: 3px solid #3b82f6;
+            border: 3px solid #e2e8f0;
+            border-top: 3px solid #2563eb;
             border-radius: 50%;
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
             animation: spin 1s linear infinite;
-            margin: 20px auto;
+            margin: 30px auto;
             display: none;
         }
         @keyframes spin {
@@ -95,33 +99,38 @@
         }
         #result-card {
             display: none;
-            margin-top: 25px;
+            margin-top: 35px;
             text-align: left;
-            background-color: #09090b;
-            border: 1px solid #27272a;
-            padding: 20px;
+            background-color: #f1f5f9; /* Soft contrast area for results */
+            border: 1px solid #e2e8f0;
+            padding: 25px;
             border-radius: 12px;
         }
         .badge-danger {
-            background-color: rgba(239, 68, 68, 0.1);
+            background-color: #fee2e2;
             color: #ef4444;
-            padding: 4px 8px;
+            padding: 6px 12px;
             border-radius: 6px;
-            font-size: 12px;
-            font-weight: 600;
+            font-size: 14px;
+            font-weight: 700;
             display: inline-block;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #fca5a5;
         }
         .metric-text {
-            font-size: 14px;
-            color: #d4d4d8;
-            line-height: 1.6;
+            font-size: 15px;
+            color: #334155;
+            line-height: 1.7;
             word-wrap: break-word;
         }
-        /* Make strong text stand out */
         strong {
-            color: #ffffff;
-            font-weight: 600;
+            color: #0f172a;
+            font-weight: 700;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #cbd5e1;
+            margin: 20px 0;
         }
     </style>
 </head>
@@ -194,7 +203,7 @@
                 aiText = "🚨 <strong>Critical Audit Findings:</strong>\n\n• <strong>Weak Value Proposition:</strong> Your above-the-fold copy is too generic. Visitors cannot instantly tell what specific problem you solve within the first 3 seconds.\n\n• <strong>High Friction CTA:</strong> Your Call-To-Action buttons blend into the background. Use high-contrast colors and action-oriented text (e.g., 'Get My Free Audit' instead of 'Submit').\n\n• <strong>Lack of Social Proof:</strong> Trust signals are missing near the pricing/signup area. Add quantifiable results or micro-testimonials to reduce buyer hesitation.\n\n<i>Fix these 3 core issues to instantly improve your conversion rate.</i>";
             }
 
-            // TEXT FORMATTER: Converts AI Markdown (**text**) to HTML Bold (<strong>text</strong>)
+            // TEXT FORMATTER
             const formattedText = aiText
                 .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
                 .replace(/\n/g, '<br>');
@@ -208,8 +217,8 @@
                     <strong>Target:</strong> ${url}<br><br>
                     <strong>AI Audit Result:</strong><br><br>
                     ${formattedText}
-                    <br><br><hr style="border-color:#27272a;"><br>
-                    <i>Want deeper insights? Run a full 1,000-AI simulation on our main SaaS (Coming Soon).</i>
+                    <hr>
+                    <i style="color: #64748b;">Want deeper insights? Run a full 1,000-AI simulation on our main SaaS (Coming Soon).</i>
                 </div>
             `;
         }
