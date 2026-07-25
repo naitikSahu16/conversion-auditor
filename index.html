@@ -166,7 +166,7 @@
                         "X-Title": "Conversion Auditor AI"
                     },
                     body: JSON.stringify({
-                        "model": "meta-llama/llama-3-8b-instruct:free",
+                        "model": "google/gemma-2-9b-it:free",
                         "messages": [
                             {"role": "system", "content": "You are a brutal, highly-skilled Conversion Rate Optimizer and B2B SaaS expert. The user will give you a website URL. Your job is to give a brutal, honest, 3-point roast about why their landing page probably sucks and how to fix it to get more sales. Keep it under 100 words. Be direct and format it clearly with bullet points."},
                             {"role": "user", "content": `Audit this landing page: ${url}`}
@@ -176,7 +176,6 @@
 
                 const data = await response.json();
                 
-                // If API returns an error, we catch the exact technical reason
                 if(data.error) {
                     throw new Error(data.error.message || "Unknown API Error");
                 }
@@ -200,8 +199,7 @@
             } catch (error) {
                 spinner.style.display = 'none';
                 resultCard.style.display = 'block';
-                // THIS will print the real reason it's failing
-                resultCard.innerHTML = `<div class="metric-text" style="color: #ef4444;"><strong>System Message:</strong> ${error.message} <br><br> <i>(Bhai, agar ye error aaye toh exactly bataana kya likha hai)</i></div>`;
+                resultCard.innerHTML = `<div class="metric-text" style="color: #ef4444;"><strong>System Message:</strong> ${error.message}</div>`;
             }
         }
     </script>
