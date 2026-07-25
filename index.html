@@ -6,49 +6,52 @@
   <title>Conversion Auditor AI | Brutal CRO Roast</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
+    :root {
+      --primary: #2563eb;
+      --dark: #0f172a;
+      --gray: #64748b;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --border: #e2e8f0;
+      --shadow: 0 25px 50px -12px rgba(0,0,0,0.08);
+    }
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-
     body {
-      background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
+      background: var(--bg);
       font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       display: flex;
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      margin: 0;
       padding: 1.5rem;
     }
-
-    .app-card {
-      max-width: 750px;
+    .app {
+      max-width: 780px;
       width: 100%;
-      background: #ffffff;
+      background: var(--card);
       border-radius: 2rem;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
+      box-shadow: var(--shadow);
       padding: 2.5rem 2rem;
-      transition: all 0.3s ease;
+      transition: all 0.2s ease;
     }
-
     @media (max-width: 500px) {
-      .app-card {
+      .app {
         padding: 2rem 1.25rem;
         border-radius: 1.5rem;
       }
     }
-
-    .logo {
+    .header {
       display: flex;
       align-items: center;
       gap: 0.75rem;
       margin-bottom: 0.5rem;
     }
-
-    .logo-icon {
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    .header-icon {
+      background: var(--dark);
       color: white;
       width: 3rem;
       height: 3rem;
@@ -56,650 +59,507 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.4rem;
-      box-shadow: 0 10px 20px -5px rgba(15, 23, 42, 0.3);
+      font-size: 1.5rem;
+      box-shadow: 0 10px 20px -5px rgba(15,23,42,0.3);
     }
-
-    .logo-text {
+    .header-text {
       font-weight: 800;
       font-size: 1.8rem;
       letter-spacing: -0.5px;
-      color: #0f172a;
+      color: var(--dark);
     }
-
-    .logo-text span {
-      background: linear-gradient(135deg, #2563eb, #7c3aed);
+    .header-text span {
+      background: linear-gradient(135deg, var(--primary), #7c3aed);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-
-    .subhead {
-      color: #64748b;
-      font-size: 1rem;
-      margin-bottom: 2rem;
-      border-left: 4px solid #2563eb;
+    .subtitle {
+      color: var(--gray);
+      font-size: 0.95rem;
+      margin-bottom: 1.8rem;
+      border-left: 4px solid var(--primary);
       padding-left: 1rem;
       font-weight: 500;
       background: linear-gradient(to right, #f1f5f9, transparent);
-      border-radius: 0 0.5rem 0.5rem 0;
     }
-
     .input-group {
       display: flex;
       flex-direction: column;
       gap: 0.75rem;
       margin-bottom: 1.5rem;
     }
-
-    .url-input-wrapper {
+    .url-wrapper {
       display: flex;
       align-items: center;
-      background: #f8fafc;
+      background: #f1f5f9;
       border-radius: 1rem;
       padding: 0.2rem 0.2rem 0.2rem 1.25rem;
-      border: 2px solid #e2e8f0;
-      transition: all 0.3s ease;
+      border: 1px solid var(--border);
+      transition: all 0.2s;
     }
-
-    .url-input-wrapper:focus-within {
-      border-color: #2563eb;
-      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
-      background: #ffffff;
+    .url-wrapper:focus-within {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+      background: white;
     }
-
-    .url-input-wrapper i {
-      color: #94a3b8;
+    .url-wrapper i {
+      color: var(--gray);
       font-size: 1.1rem;
-      transition: color 0.3s ease;
     }
-
-    .url-input-wrapper:focus-within i {
-      color: #2563eb;
-    }
-
-    .url-input-wrapper input {
+    .url-wrapper input {
       width: 100%;
       border: none;
       background: transparent;
       padding: 0.9rem 0.75rem;
       font-size: 1rem;
       outline: none;
-      color: #0f172a;
+      color: var(--dark);
       font-weight: 500;
     }
-
-    .url-input-wrapper input::placeholder {
-      color: #94a3b8;
-      font-weight: 400;
-    }
-
     .btn {
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      background: var(--dark);
       color: white;
       border: none;
       border-radius: 1rem;
-      padding: 1rem 2rem;
+      padding: 0.95rem 1.8rem;
       font-weight: 600;
-      font-size: 1.05rem;
+      font-size: 1rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.6rem;
+      gap: 0.5rem;
       cursor: pointer;
-      transition: all 0.3s ease;
-      letter-spacing: -0.2px;
-      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.2);
-      position: relative;
-      overflow: hidden;
+      transition: all 0.2s;
+      box-shadow: 0 4px 10px rgba(15,23,42,0.1);
     }
-
-    .btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-      transition: left 0.5s ease;
-    }
-
-    .btn:hover::before {
-      left: 100%;
-    }
-
     .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 25px rgba(15, 23, 42, 0.3);
+      background: #1e293b;
+      transform: translateY(-1px);
+      box-shadow: 0 10px 20px -8px rgba(15,23,42,0.25);
     }
-
-    .btn:active {
-      transform: translateY(0);
-    }
-
     .btn:disabled {
       opacity: 0.7;
       cursor: not-allowed;
       transform: none;
-      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.1);
+      box-shadow: none;
     }
-
-    .btn:disabled::before {
-      display: none;
-    }
-
-    .loading-container {
+    .loader {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 1rem;
-      margin: 2rem 0;
-      color: #2563eb;
-      font-weight: 600;
-      font-size: 1.05rem;
+      gap: 0.75rem;
+      margin: 1.5rem 0;
+      color: var(--primary);
+      font-weight: 500;
     }
-
     .spinner {
-      width: 2rem;
-      height: 2rem;
+      width: 1.5rem;
+      height: 1.5rem;
       border: 3px solid #e2e8f0;
-      border-top: 3px solid #2563eb;
+      border-top-color: var(--primary);
       border-radius: 50%;
-      animation: spin 0.7s linear infinite;
+      animation: spin 0.8s linear infinite;
     }
-
     @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+      to { transform: rotate(360deg); }
     }
-
     .result-card {
-      background: #ffffff;
+      background: white;
       border: 1px solid #e9eef3;
       border-radius: 1.5rem;
-      padding: 2rem;
+      padding: 1.8rem;
       margin-top: 1.5rem;
-      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.08);
-      animation: fadeSlide 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 15px 30px -12px rgba(0,0,0,0.05);
+      animation: fadeSlide 0.3s ease;
     }
-
     @keyframes fadeSlide {
-      0% { 
-        opacity: 0; 
-        transform: translateY(20px);
-      }
-      100% { 
-        opacity: 1; 
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-
-    .score-section {
+    .score-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 1.8rem;
+      margin-bottom: 1.5rem;
       flex-wrap: wrap;
       gap: 1rem;
     }
-
-    .score-badge {
-      font-weight: 800;
-      font-size: 2rem;
-      padding: 0.5rem 1.5rem;
-      border-radius: 2.5rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      letter-spacing: -0.5px;
-      transition: all 0.3s ease;
-    }
-
-    .score-low {
-      background: #fef2f2;
-      color: #dc2626;
-      border: 2px solid #fecaca;
-    }
-
-    .score-mid {
-      background: #fffbeb;
-      color: #d97706;
-      border: 2px solid #fde68a;
-    }
-
     .score-label {
-      color: #64748b;
+      color: var(--gray);
       font-weight: 700;
       font-size: 0.85rem;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
     }
-
-    .roast-title {
+    .badge {
       font-weight: 700;
-      color: #0f172a;
-      font-size: 1.3rem;
-      margin-bottom: 1.2rem;
+      font-size: 1.8rem;
+      padding: 0.4rem 1.2rem;
+      border-radius: 2.5rem;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.3rem;
     }
-
+    .badge.low {
+      background: #fef2f2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+    }
+    .badge.mid {
+      background: #fffbeb;
+      color: #d97706;
+      border: 1px solid #fde68a;
+    }
+    .roast-title {
+      font-weight: 700;
+      color: var(--dark);
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
     .roast-list {
       list-style: none;
-      padding: 0;
       display: flex;
       flex-direction: column;
       gap: 1rem;
     }
-
     .roast-item {
       background: #f8fafc;
       border-radius: 1rem;
-      padding: 1.2rem 1.4rem;
-      border-left: 5px solid #2563eb;
+      padding: 1rem 1.2rem;
+      border-left: 5px solid var(--primary);
       font-size: 0.98rem;
       color: #1e293b;
-      line-height: 1.6;
+      line-height: 1.5;
       font-weight: 500;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-      transition: all 0.2s ease;
     }
-
-    .roast-item:hover {
-      transform: translateX(3px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    }
-
     .roast-item i {
-      color: #2563eb;
-      margin-right: 0.6rem;
-      font-size: 1.1rem;
+      color: var(--primary);
+      margin-right: 0.5rem;
     }
-
-    .error-message {
+    .error-box {
       background: #fff1f2;
       color: #be123c;
-      padding: 1.2rem 1.4rem;
+      padding: 1rem 1.2rem;
       border-radius: 1rem;
-      font-weight: 600;
       border: 1px solid #fecdd3;
       margin-top: 1rem;
+      font-weight: 500;
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
-
     .hidden {
       display: none !important;
     }
-
-    .footer-note {
+    .footer {
       margin-top: 1.5rem;
       font-size: 0.8rem;
       color: #94a3b8;
       text-align: center;
-      border-top: 1px solid #e2e8f0;
-      padding-top: 1.2rem;
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 0.4rem;
+      flex-wrap: wrap;
     }
-
-    .counter-badge {
-      background: #f1f5f9;
-      color: #64748b;
-      padding: 0.3rem 0.8rem;
-      border-radius: 1rem;
-      font-size: 0.75rem;
+    .history-section {
+      margin-top: 2rem;
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+    }
+    .history-title {
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .history-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .history-item {
+      background: #f8fafc;
+      border-radius: 0.75rem;
+      padding: 0.7rem 1rem;
+      font-size: 0.9rem;
+      color: var(--dark);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid #e9eef3;
+    }
+    .history-url {
       font-weight: 600;
-      margin-left: 0.5rem;
+      color: var(--primary);
+      text-decoration: none;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 200px;
+    }
+    .copy-btn {
+      background: transparent;
+      border: 1px solid #cbd5e1;
+      border-radius: 0.5rem;
+      padding: 0.3rem 0.7rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+      color: var(--gray);
+      transition: all 0.2s;
+    }
+    .copy-btn:hover {
+      background: #f1f5f9;
+      border-color: var(--primary);
+      color: var(--primary);
     }
   </style>
 </head>
 <body>
-  <div class="app-card">
-    <div class="logo">
-      <div class="logo-icon">
-        <i class="fas fa-magnifying-glass-chart"></i>
-      </div>
-      <div class="logo-text">
-        Auditor<span>AI</span>
-      </div>
+  <div class="app">
+    <div class="header">
+      <div class="header-icon"><i class="fas fa-magnifying-glass-chart"></i></div>
+      <div class="header-text">Auditor<span>AI</span></div>
     </div>
-    <div class="subhead">
-      🔥 Drop your URL. Get roasted. Fix your conversion leaks.
-    </div>
+    <div class="subtitle">🔥 Drop your URL. Get a brutal, 3‑point CRO roast that actually fixes leaks.</div>
 
     <div class="input-group">
-      <div class="url-input-wrapper">
+      <div class="url-wrapper">
         <i class="fas fa-link"></i>
-        <input type="url" id="urlInput" placeholder="https://yourwebsite.com/landing-page" autocomplete="off" />
+        <input type="url" id="urlInput" placeholder="https://example.com/landing-page" autocomplete="off">
       </div>
       <button id="auditBtn" class="btn">
-        <i class="fas fa-bolt"></i> Run Brutal Audit
+        <i class="fas fa-bolt"></i> Run Audit
       </button>
     </div>
 
-    <div id="loadingSpinner" class="loading-container hidden">
-      <div class="spinner"></div>
-      <span>Analyzing your page like a CRO detective...</span>
+    <div id="loading" class="loader hidden">
+      <div class="spinner"></div> <span>Dissecting your page…</span>
     </div>
-
     <div id="resultContainer" class="hidden"></div>
 
-    <div class="footer-note">
-      <i class="far fa-shield-alt"></i> 
-      Powered by OpenRouter + Gemini 2.0 Flash
-      <span class="counter-badge" id="auditCount">0 audits</span>
+    <!-- Audit history -->
+    <div id="historySection" class="history-section hidden">
+      <div class="history-title"><i class="fas fa-history"></i> Recent Audits</div>
+      <div id="historyList" class="history-list"></div>
+    </div>
+
+    <div class="footer">
+      <i class="far fa-shield-alt"></i> Powered by OpenRouter + Gemini
+      <span style="margin-left:0.5rem;background:#f1f5f9;padding:0.2rem 0.6rem;border-radius:1rem;font-size:0.75rem" id="auditCount">0 audits</span>
     </div>
   </div>
 
   <script>
     (function() {
-      // ========== YOUR OPENROUTER API KEY ==========
-      const OPENROUTER_API_KEY = "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";
-      
+      // ═══════════════ YOUR OPENROUTER API KEY ═══════════════
+      const OPENROUTER_KEY = "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";
       const API_URL = "https://openrouter.ai/api/v1/chat/completions";
-      const SITE_URL = "https://conversion-auditor-ai.vercel.app";
-      const SITE_NAME = "Conversion Auditor AI";
+      const SITE_URL = window.location.origin || "https://conversion-auditor.vercel.app";
 
-      // DOM elements
+      // DOM nodes
       const urlInput = document.getElementById('urlInput');
       const auditBtn = document.getElementById('auditBtn');
-      const loadingSpinner = document.getElementById('loadingSpinner');
+      const loader = document.getElementById('loading');
       const resultContainer = document.getElementById('resultContainer');
-      const auditCountBadge = document.getElementById('auditCount');
+      const historySection = document.getElementById('historySection');
+      const historyList = document.getElementById('historyList');
+      const auditCountSpan = document.getElementById('auditCount');
 
-      // Track number of audits
-      let auditCount = parseInt(localStorage.getItem('auditCount') || '0');
-      auditCountBadge.textContent = `${auditCount} audits`;
+      // Local state
+      let auditCount = parseInt(localStorage.getItem('cro_audit_count') || '0');
+      let auditHistory = JSON.parse(localStorage.getItem('cro_audit_history') || '[]'); // {url, score, points, date}
 
-      // List of CRO-specific aspects to ensure variety
-      const croAspects = [
-        "headline clarity and hook strength",
-        "CTA button copy, color, placement",
-        "social proof elements (testimonials, logos, numbers)",
-        "mobile responsiveness and thumb-friendly design",
-        "page load speed perception",
-        "trust signals (guarantees, security badges, privacy)",
-        "form length and friction points",
-        "value proposition above the fold",
-        "visual hierarchy and scanning patterns",
-        "urgency and scarcity triggers",
-        "navigation clarity and exit paths",
-        "content readability and formatting"
-      ];
-
-      function getRandomAspects(count = 4) {
-        const shuffled = [...croAspects].sort(() => Math.random() - 0.5);
-        return shuffled.slice(0, count);
+      // Update UI counters
+      auditCountSpan.textContent = `${auditCount} audits`;
+      if (auditHistory.length > 0) {
+        historySection.classList.remove('hidden');
+        renderHistory();
       }
 
-      function getRandomScore() {
-        return Math.floor(Math.random() * 31) + 15; // 15 to 45
+      // ────────── helpers ──────────
+      const randomScore = () => Math.floor(Math.random() * 31) + 15;
+      const escapeHtml = (str) => str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+      // Parse AI text into array of 3 points
+      function parseRoast(text) {
+        let clean = text.trim().replace(/\*\*/g, '');
+        let lines = clean.split('\n').filter(l => l.trim().length > 0)
+          .map(l => l.replace(/^[\s•\-*]*\d+[\.\)]\s*/, '').trim())
+          .filter(l => l.length > 15);
+        if (lines.length >= 3) return lines.slice(0, 3);
+        let sents = clean.split(/(?<=[.!?])\s+(?=[A-Z])/).filter(s => s.length > 15).slice(0, 3);
+        return sents.length >= 3 ? sents : [clean];
       }
 
-      function getScoreClass(score) {
-        if (score <= 25) return 'score-low';
-        if (score <= 35) return 'score-mid';
-        return 'score-low';
+      // Save to history
+      function saveToHistory(url, score, points) {
+        const entry = { url, score, points, date: new Date().toLocaleString() };
+        auditHistory.unshift(entry);
+        if (auditHistory.length > 3) auditHistory = auditHistory.slice(0, 3);
+        localStorage.setItem('cro_audit_history', JSON.stringify(auditHistory));
+        auditCount++;
+        localStorage.setItem('cro_audit_count', auditCount);
+        auditCountSpan.textContent = `${auditCount} audits`;
+        historySection.classList.remove('hidden');
+        renderHistory();
       }
 
-      function parseRoastToHTML(rawText) {
-        let cleaned = rawText.trim();
-        // Remove any markdown formatting
-        cleaned = cleaned.replace(/\*\*/g, '').replace(/\*/g, '');
-        
-        const lines = cleaned.split(/\n+/).filter(line => line.trim().length > 0);
-        const roastPoints = [];
-        
-        for (let line of lines) {
-          let trimmed = line.replace(/^[\s•\-*]+/, '').trim();
-          trimmed = trimmed.replace(/^\d+[\.\)]\s*/, '');
-          if (trimmed.length > 15) {
-            roastPoints.push(trimmed);
-          }
-        }
-
-        if (roastPoints.length < 3) {
-          const sentences = cleaned
-            .split(/(?<=[.!?])\s+(?=[A-Z])/)
-            .filter(s => s.length > 20)
-            .slice(0, 3);
-          if (sentences.length >= 3) return sentences;
-          
-          // Last resort: split by periods
-          const periodSplit = cleaned.split('.').filter(s => s.trim().length > 15).map(s => s.trim() + '.');
-          if (periodSplit.length >= 3) return periodSplit.slice(0, 3);
-          
-          return [cleaned];
-        }
-        return roastPoints.slice(0, 3);
-      }
-
-      function renderResult(score, roastText) {
-        const points = parseRoastToHTML(roastText);
-        const scoreClass = getScoreClass(score);
-        
-        const scoreEmoji = score <= 20 ? '😱' : score <= 30 ? '😬' : '😅';
-        
-        const scoreHtml = `
-          <div class="score-section">
-            <span class="score-label">📊 Conversion Score</span>
-            <span class="score-badge ${scoreClass}">
-              ${scoreEmoji} ${score}/100
+      function renderHistory() {
+        historyList.innerHTML = auditHistory.map((item, idx) => `
+          <div class="history-item">
+            <span class="history-url" title="${escapeHtml(item.url)}">${escapeHtml(item.url)}</span>
+            <span style="display:flex;align-items:center;gap:0.5rem;">
+              <span style="font-weight:700;color:${item.score<=25?'#b91c1c':'#d97706'}">${item.score}/100</span>
+              <button class="copy-btn" data-index="${idx}" title="Copy roast"><i class="far fa-copy"></i></button>
             </span>
           </div>
-        `;
+        `).join('');
+        // Attach copy listeners
+        document.querySelectorAll('.copy-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const index = e.currentTarget.dataset.index;
+            const entry = auditHistory[index];
+            if (entry) {
+              const text = entry.points.map((p,i) => `${i+1}. ${p}`).join('\n');
+              navigator.clipboard.writeText(text).then(() => {
+                const icon = e.currentTarget.querySelector('i');
+                icon.className = 'fas fa-check';
+                setTimeout(() => { icon.className = 'far fa-copy'; }, 1500);
+              });
+            }
+          });
+        });
+      }
 
-        let pointsHtml = '';
-        if (points.length >= 3) {
-          const icons = ['fa-1', 'fa-2', 'fa-3'];
-          pointsHtml = points.slice(0, 3).map((point, idx) => {
-            return `
-              <li class="roast-item">
-                <i class="fas ${icons[idx]}"></i> <strong>Leak #${idx + 1}:</strong> ${escapeHtml(point)}
-              </li>
-            `;
-          }).join('');
-        } else {
-          pointsHtml = `<li class="roast-item"><i class="fas fa-exclamation-triangle"></i> ${escapeHtml(roastText)}</li>`;
-        }
-
+      function renderResult(url, score, roastPoints) {
+        const emoji = score <= 20 ? '😱' : score <= 30 ? '😬' : '😅';
+        const cls = score <= 25 ? 'low' : 'mid';
         const html = `
           <div class="result-card">
-            ${scoreHtml}
-            <div class="roast-title">
-              <i class="fas fa-fire" style="color:#ef4444;"></i> 
-              🔥 Brutal CRO Roast
+            <div class="score-row">
+              <span class="score-label">📊 Conversion Score</span>
+              <span class="badge ${cls}">${emoji} ${score}/100</span>
             </div>
+            <div class="roast-title"><i class="fas fa-fire" style="color:#ef4444"></i> Brutal CRO Roast</div>
             <ul class="roast-list">
-              ${pointsHtml}
+              ${roastPoints.map((p, i) => `<li class="roast-item"><i class="fas fa-${i+1}"></i>${escapeHtml(p)}</li>`).join('')}
             </ul>
           </div>
         `;
-        
         resultContainer.innerHTML = html;
         resultContainer.classList.remove('hidden');
-        
-        // Scroll to result smoothly
         resultContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
 
-      function escapeHtml(text) {
-        const map = {
-          '&': '&amp;',
-          '<': '&lt;',
-          '>': '&gt;',
-          '"': '&quot;',
-          "'": '&#039;'
-        };
-        return text.replace(/[&<>"']/g, m => map[m]);
-      }
-
       function showError(message) {
-        resultContainer.innerHTML = `
-          <div class="error-message">
-            <i class="fas fa-circle-exclamation"></i> 
-            ${escapeHtml(message)}
-          </div>
-        `;
+        resultContainer.innerHTML = `<div class="error-box"><i class="fas fa-circle-exclamation"></i> ${escapeHtml(message)}</div>`;
         resultContainer.classList.remove('hidden');
       }
 
+      // ────────── API call with fallback models ──────────
+      async function callOpenRouter(prompt) {
+        const models = [
+          'google/gemini-2.0-flash-001',
+          'google/gemini-flash-1.5',
+          'google/gemini-pro',
+          'google/palm-2-chat-bison'
+        ];
+        let lastError = null;
+        for (const model of models) {
+          try {
+            const response = await fetch(API_URL, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${OPENROUTER_KEY}`,
+                'HTTP-Referer': SITE_URL,
+                'X-Title': 'Conversion Auditor AI'
+              },
+              body: JSON.stringify({
+                model,
+                messages: [{ role: 'user', content: prompt }],
+                temperature: 0.9,
+                max_tokens: 500
+              })
+            });
+            if (response.ok) {
+              const data = await response.json();
+              const content = data?.choices?.[0]?.message?.content;
+              if (content && content.trim().length > 20) return content;
+              else throw new Error('Short response');
+            } else {
+              const errText = await response.text();
+              console.warn(`Model ${model} failed (${response.status})`);
+              lastError = `${response.status}: ${errText.slice(0,100)}`;
+            }
+          } catch (err) {
+            console.warn(`Model ${model} error:`, err.message);
+            lastError = err.message;
+          }
+        }
+        throw new Error(lastError || 'All models failed. Check your OpenRouter credits or key.');
+      }
+
+      // ────────── main audit flow ──────────
       async function runAudit() {
-        const rawUrl = urlInput.value.trim();
-        if (!rawUrl) {
-          showError('⚠️ Please enter a valid website URL first.');
-          urlInput.focus();
-          return;
-        }
+        let rawUrl = urlInput.value.trim();
+        if (!rawUrl) return showError('Please enter a website URL.');
+        if (!rawUrl.startsWith('http')) rawUrl = 'https://' + rawUrl;
+        try { new URL(rawUrl); } catch (_) { return showError('Invalid URL format.'); }
 
-        let urlToAnalyze = rawUrl;
-        if (!urlToAnalyze.startsWith('http://') && !urlToAnalyze.startsWith('https://')) {
-          urlToAnalyze = 'https://' + urlToAnalyze;
-        }
-
-        try {
-          new URL(urlToAnalyze);
-        } catch (e) {
-          showError('❌ Invalid URL format. Please include a full domain (e.g., https://example.com).');
-          return;
-        }
-
-        // UI updates
+        // UI feedback
         auditBtn.disabled = true;
-        loadingSpinner.classList.remove('hidden');
+        loader.classList.remove('hidden');
         resultContainer.classList.add('hidden');
         resultContainer.innerHTML = '';
 
-        // Select random CRO aspects for this audit
-        const selectedAspects = getRandomAspects(3);
-        
-        // Create a unique audit ID for variety
-        const auditId = Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
-        
-        const prompt = `You are a ruthless CRO (Conversion Rate Optimization) expert who gives brutally honest, no-sugar-coating audits. Your job is to find REAL conversion killers.
-
-URL TO ANALYZE: ${urlToAnalyze}
-
-IMPORTANT: This is audit #${auditId}. Focus specifically on these CRO aspects: ${selectedAspects.join(', ')}.
-
-YOUR TASK:
-Analyze this website and provide a BRUTAL 3-point roast. Each point must:
-- Identify a SPECIFIC, real conversion problem (not generic advice)
-- Explain WHY it kills conversions
-- Give a concrete, actionable fix
-
-CRITICAL RULES:
-1. NEVER use generic phrases like "improve your headline" or "add social proof" - be SPECIFIC
-2. Imagine you're actually looking at the page and finding real issues
-3. Use sharp, direct language - don't be polite
-4. Each point must be 1-2 sentences max
-5. Focus on the aspects I mentioned: ${selectedAspects.slice(0, 2).join(' and ')}
-6. Make it feel like a real audit, not a template
-
-FORMAT EXACTLY LIKE THIS (no introduction, no conclusion):
-1. [specific brutal insight with fix]
-2. [specific brutal insight with fix]  
-3. [specific brutal insight with fix]
-
-START NOW:`;
+        // Randomize CRO aspects to get unique output each time
+        const allAspects = [
+          'headline clarity', 'CTA copy/color/placement', 'social proof', 'mobile responsiveness',
+          'perceived load speed', 'trust signals (badges, guarantees)', 'form friction',
+          'value proposition above the fold', 'visual hierarchy', 'urgency/scarcity',
+          'navigation clarity', 'readability & formatting'
+        ];
+        const selected = allAspects.sort(() => Math.random() - 0.5).slice(0, 3);
+        const prompt = `You are a world-class CRO expert. Analyze the website: ${rawUrl}.
+Focus specifically on these aspects: ${selected.join(', ')}.
+Give a brutal, no-fluff 3‑point roast. Each point must be 1-2 sentences, extremely specific and actionable.
+Format:
+1. [first leak + fix]
+2. [second leak + fix]
+3. [third leak + fix]`;
 
         try {
-          const response = await fetch(API_URL, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
-              'HTTP-Referer': SITE_URL,
-              'X-Title': SITE_NAME,
-            },
-            body: JSON.stringify({
-              model: 'google/gemini-2.0-flash-001',
-              messages: [
-                {
-                  role: 'system',
-                  content: 'You are a brutally honest CRO expert. Never give generic advice. Always be specific and actionable.'
-                },
-                {
-                  role: 'user',
-                  content: prompt
-                }
-              ],
-              temperature: 1.0, // Higher temperature for more variety
-              max_tokens: 500,
-              top_p: 0.95,
-              frequency_penalty: 0.3,
-              presence_penalty: 0.3,
-            })
-          });
-
-          if (!response.ok) {
-            const errorText = await response.text();
-            console.error('API Error:', errorText);
-            
-            if (response.status === 401 || response.status === 403) {
-              throw new Error('🔑 API key issue. Please check your OpenRouter key.');
-            } else if (response.status === 429) {
-              throw new Error('⏳ Rate limit reached. Please wait a moment and try again.');
-            } else {
-              throw new Error(`API error ${response.status}. Please try again.`);
-            }
-          }
-
-          const data = await response.json();
-          console.log('API Response:', data); // For debugging
-          
-          const aiContent = data?.choices?.[0]?.message?.content;
-          
-          if (!aiContent || aiContent.trim().length < 20) {
-            throw new Error('AI returned an empty response. Please try a different URL.');
-          }
-
-          const score = getRandomScore();
-          renderResult(score, aiContent);
-
-          // Update audit count
-          auditCount++;
-          localStorage.setItem('auditCount', auditCount.toString());
-          auditCountBadge.textContent = `${auditCount} audits`;
-
-        } catch (apiError) {
-          console.error('Full error:', apiError);
-          showError(`${apiError.message || 'Something went wrong. Please try again.'}`);
+          const aiText = await callOpenRouter(prompt);
+          const points = parseRoast(aiText);
+          const score = randomScore();
+          renderResult(rawUrl, score, points);
+          saveToHistory(rawUrl, score, points);
+        } catch (err) {
+          showError(err.message || 'Unexpected error. Please try again.');
         } finally {
           auditBtn.disabled = false;
-          loadingSpinner.classList.add('hidden');
+          loader.classList.add('hidden');
         }
       }
 
-      // Event listeners
+      // Event binding
       auditBtn.addEventListener('click', runAudit);
-
       urlInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-          e.preventDefault();
-          runAudit();
-        }
+        if (e.key === 'Enter') runAudit();
       });
 
-      // Add some example URLs for quick testing
-      const exampleUrls = [
-        'https://example.com',
-        'https://stripe.com',
-        'https://shopify.com'
-      ];
-      
-      // Random placeholder
-      const randomExample = exampleUrls[Math.floor(Math.random() * exampleUrls.length)];
-      urlInput.placeholder = `e.g., ${randomExample}`;
-
-      console.log('🚀 Conversion Auditor AI ready!');
-      console.log('📊 Total audits performed:', auditCount);
+      // Optional initial placeholder
+      urlInput.placeholder = 'https://stripe.com/pricing';
     })();
   </script>
 </body>
