@@ -16,7 +16,8 @@ export default async function handler(req, res) {
     try {
         const promptText = `Act as an elite Conversion Rate Optimization (CRO) expert. Analyze the brand or website at this URL: ${url}. Provide exactly 3 brutal, hyper-specific, and highly actionable bullet points highlighting conversion killers, UX flaws, or bad copy based on their specific industry. Do NOT use generic advice. Limit to 150 words total.`;
 
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+        // Yahan Google ke model ka naya official naam update kar diya hai
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ contents: [{ parts: [{ text: promptText }] }] })
