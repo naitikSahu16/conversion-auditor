@@ -1,53 +1,34 @@
 export default async function handler(req, res) {
-    // Only allow POST requests from the frontend
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Only POST method is allowed' });
     }
 
     const { url } = req.body;
-    
-    // Ensure a URL is provided by the user
     if (!url) {
         return res.status(400).json({ error: 'URL is required' });
     }
 
-    // Retrieve the DeepSeek API key from Vercel's secure Environment Variables
-    const apiKey = process.env.DEEPSEEK_API_KEY;
-    
+    const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
-        return res.status(500).json({ error: 'System Error: DeepSeek API Key is missing in Vercel environment.' });
+        return res.status(500).json({ error: 'API Key missing in Vercel settings.' });
     }
 
     try {
-        // The core instruction set for the AI
-        const promptText = `Act as an elite CRO expert. Analyze this specific URL: ${url}. Provide exactly 3 brutal, hyper-specific bullet points highlighting conversion killers, UX flaws, or bad copy based ONLY on what this specific brand/industry does. Do NOT use generic advice. Be ruthless. Limit to 100 words total.`;
+        const promptText = `Act as an elite Conversion Rate Optimization (CRO) expert. Analyze the brand or website at this URL: ${url}. Provide exactly 3 brutal, hyper-specific, and highly actionable bullet points highlighting conversion killers, UX flaws, or bad copy based on their specific industry. Do NOT use generic advice. Limit to 150 words total.`;
 
-        // Send the request to DeepSeek's official API endpoint
-        const response = await fetch('https://api.deepseek.com/chat/completions', {
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${apiKey}`
-            },
-            body: JSON.stringify({
-                model: 'deepseek-chat',
-                messages: [
-                    { role: 'system', content: 'You are an expert Conversion Rate Optimizer.' },
-                    { role: 'user', content: promptText }
-                ],
-                temperature: 0.7
-            })
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ contents: [{ parts: [{ text: promptText }] }] })
         });
 
         const data = await response.json();
         
-        // Handle any errors returned by DeepSeek's servers
         if (data.error) {
             throw new Error(data.error.message);
         }
 
-        // Extract the AI's response and send it back to the frontend UI
-        const aiResponse = data.choices[0].message.content;
+        const aiResponse = data.candidates[0].content.parts[0].text;
         return res.status(200).json({ result: aiResponse });
 
     } catch (error) {
