@@ -3,91 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    
-    <title>Conversion Auditor AI - Lifetime Free</title>
+    <title>Conversion Auditor AI Pro</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        body { 
-            background-color: #f8fafc; 
-            color: #0f172a; 
-            font-family: 'Inter', sans-serif; 
-            margin: 0; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            padding: 50px 15px; 
-            min-height: 100vh; 
-            box-sizing: border-box; 
-        }
-        .container { 
-            background-color: #ffffff; 
-            border: 1px solid #e2e8f0; 
-            padding: 50px 40px; 
-            border-radius: 16px; 
-            box-shadow: 0 10px 30px -5px rgba(0,0,0,0.05); 
-            text-align: center; 
-            max-width: 850px; 
-            width: 100%; 
-            box-sizing: border-box;
-        }
+        body { background-color: #f8fafc; color: #0f172a; font-family: 'Inter', sans-serif; margin: 0; display: flex; flex-direction: column; align-items: center; padding: 50px 15px; min-height: 100vh; box-sizing: border-box; }
+        .container { background-color: #ffffff; border: 1px solid #e2e8f0; padding: 50px 40px; border-radius: 16px; box-shadow: 0 10px 30px -5px rgba(0,0,0,0.05); text-align: center; max-width: 850px; width: 100%; }
         h1 { font-size: 36px; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.5px; }
         p.subtitle { font-size: 18px; color: #64748b; margin-bottom: 40px; line-height: 1.6; }
         .input-group { display: flex; flex-direction: column; gap: 20px; }
-        input { 
-            width: 100%; 
-            padding: 24px 20px; 
-            border: 2px solid #cbd5e1; 
-            border-radius: 12px; 
-            font-size: 18px; 
-            outline: none; 
-            transition: 0.3s ease; 
-            box-sizing: border-box;
-            background-color: #f8fafc;
-        }
-        input:focus { border-color: #2563eb; background-color: #ffffff; box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15); }
-        button { 
-            background-color: #2563eb; 
-            color: #ffffff; 
-            font-weight: 700; 
-            border: none; 
-            padding: 20px; 
-            border-radius: 12px; 
-            cursor: pointer; 
-            font-size: 18px; 
-            width: 100%; 
-            transition: 0.3s ease; 
-        }
+        input { width: 100%; padding: 24px 20px; border: 2px solid #cbd5e1; border-radius: 12px; font-size: 18px; outline: none; transition: 0.3s ease; box-sizing: border-box; }
+        input:focus { border-color: #2563eb; box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15); }
+        button { background-color: #2563eb; color: #ffffff; font-weight: 700; border: none; padding: 20px; border-radius: 12px; cursor: pointer; font-size: 18px; width: 100%; transition: 0.3s ease; }
         button:hover { background-color: #1d4ed8; transform: translateY(-2px); }
-        .loader { 
-            border: 4px solid #e2e8f0; 
-            border-top: 4px solid #2563eb; 
-            border-radius: 50%; 
-            width: 36px; 
-            height: 36px; 
-            animation: spin 1s linear infinite; 
-            margin: 40px auto; 
-            display: none; 
-        }
+        .loader { border: 4px solid #e2e8f0; border-top: 4px solid #2563eb; border-radius: 50%; width: 36px; height: 36px; animation: spin 1s linear infinite; margin: 40px auto; display: none; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        #result-card { 
-            display: none; 
-            margin-top: 40px; 
-            text-align: left; 
-            background-color: #ffffff; 
-            border: 1px solid #e2e8f0; 
-            padding: 35px; 
-            border-radius: 12px; 
-        }
-        .badge-danger { 
-            background-color: #fee2e2; 
-            color: #ef4444; 
-            padding: 8px 16px; 
-            border-radius: 8px; 
-            font-weight: 700; 
-            display: inline-block; 
-            margin-bottom: 20px; 
-        }
+        #result-card { display: none; margin-top: 40px; text-align: left; background-color: #ffffff; border: 1px solid #e2e8f0; padding: 35px; border-radius: 12px; }
+        .badge-danger { background-color: #fee2e2; color: #ef4444; padding: 8px 16px; border-radius: 8px; font-weight: 700; display: inline-block; margin-bottom: 20px; }
         .metric-text { font-size: 16px; line-height: 1.8; word-wrap: break-word; color: #334155; }
         hr { border: none; border-top: 1px solid #e2e8f0; margin: 25px 0; }
     </style>
@@ -96,11 +27,11 @@
 
     <div class="container">
         <h1>Conversion Auditor AI</h1>
-        <p class="subtitle">100% Lifetime Free. No API keys, no subscriptions, no hidden charges.</p>
+        <p class="subtitle">Deep AI analysis to uncover hidden conversion leaks instantly.</p>
         
         <div class="input-group">
             <input type="text" id="urlInput" placeholder="Paste website link here (e.g., https://stripe.com)">
-            <button onclick="startAudit()">Run Free Audit ⚡</button>
+            <button onclick="startAudit()">Run Deep Audit ⚡</button>
         </div>
         
         <div class="loader" id="spinner"></div>
@@ -125,21 +56,26 @@
             let aiText = "";
 
             try {
-                const promptText = `Act as an elite CRO expert. Analyze this specific URL: ${url}. Provide exactly 3 brutal, hyper-specific bullet points highlighting conversion killers, UX flaws, or bad copy based ONLY on what this specific brand/industry does. Do NOT use generic advice. Be ruthless. Limit to 100 words total.`;
+                // Ye frontend direct api/audit.js ko call karega
+                const response = await fetch('/api/audit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ url: url })
+                });
 
-                // Keyless Free Public AI Endpoint
-                const response = await fetch(`https://text.pollinations.ai/prompt/${encodeURIComponent(promptText)}`);
+                const data = await response.json();
                 
-                if(!response.ok) {
-                    throw new Error("Server is busy. Please try again in 5 seconds.");
+                if(data.error) {
+                    throw new Error(data.error);
                 }
-
-                aiText = await response.text();
+                
+                aiText = data.result;
 
             } catch (error) {
-                aiText = `🚨 <strong>Error:</strong> ${error.message}`;
+                aiText = `🚨 <strong>System Error:</strong> ${error.message}`;
             }
 
+            // Bold aur line breaks theek karne ke liye
             const formattedText = aiText
                 .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
                 .replace(/\n/g, '<br>');
@@ -153,8 +89,6 @@
                     <strong>Target:</strong> ${url}<br><br>
                     <strong>Audit Result:</strong><br><br>
                     ${formattedText}
-                    <hr>
-                    <i style="color: #64748b; font-size: 13px;">Powered by 100% Lifetime Free AI Engine</i>
                 </div>
             `;
         }
