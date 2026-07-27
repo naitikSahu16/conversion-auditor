@@ -1,4 +1,3 @@
-// Final force update
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Only POST method is allowed' });
@@ -17,8 +16,8 @@ export default async function handler(req, res) {
     try {
         const promptText = `Act as an elite Conversion Rate Optimization (CRO) expert. Analyze the brand or website at this URL: ${url}. Provide exactly 3 brutal, hyper-specific, and highly actionable bullet points highlighting conversion killers, UX flaws, or bad copy based on their specific industry. Do NOT use generic advice. Limit to 150 words total.`;
 
-        // Yahan Google ke model ka naya official naam update kar diya hai
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`, {
+        // Model changed to the most stable default: gemini-pro
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ contents: [{ parts: [{ text: promptText }] }] })
